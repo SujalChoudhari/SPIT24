@@ -7,8 +7,10 @@ import { Badge } from "@/components/ui/badge"
 import { ResponsiveLine } from "@nivo/line"
 import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
 import { ResponsiveBar } from "@nivo/bar";
+import { useAuth } from '@/context/AuthContext';
 
 export default function analy1() {
+  const auth = useAuth();
   return (
     <div key="1" className="flex flex-col w-[80lvw] min-h-screen">
       <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
@@ -26,16 +28,16 @@ export default function analy1() {
             </div>
           </form>
           <Button className="rounded-full" size="icon" variant="ghost">
-            <img
-              alt="Avatar"
-              className="rounded-full"
-              height="32"
-              src="imga.png"
-              style={{
-                aspectRatio: "32/32",
-                objectFit: "cover",
-              }}
-              width="32"
+          <img
+                alt="Avatar"
+                className="rounded-full"
+                height="80"
+                src={auth?.user?.photoURL || "/imga.png"}
+                style={{
+                    aspectRatio: "80/80",
+                    objectFit: "cover",
+                }}
+                width="80"
             />
             <span className="sr-only">Toggle user menu</span>
           </Button>
