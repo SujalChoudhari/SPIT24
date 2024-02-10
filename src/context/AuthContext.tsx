@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 interface AuthContextProps {
     user: User | null;
     googleSignIn: Function;
-    githubSignIn:Function;
+    githubSignIn: Function;
     signUpWithEmailPassword: Function;
     logInWithEmailPassword: Function;
     forgotPasswordWithEmail: Function;
@@ -61,7 +61,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
             const userDocRef = doc(db, 'users', result.user.uid)
             const userDoc = getDoc(userDocRef);
             if (!(await userDoc).exists()) {
-                await setDoc(userDocRef, { name: result.user.displayName, likes: [], orders: [] },)
+                await setDoc(userDocRef, { name: result.user.displayName },)
             }
 
             toast.success(`Logged in as ${result.user.email}`)
