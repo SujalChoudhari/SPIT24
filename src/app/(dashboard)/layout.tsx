@@ -2,7 +2,7 @@
 import React, { ReactNode, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { GanttChart, ChevronsLeftIcon, HomeIcon, ShoppingBagIcon, UsersIcon, BarChart2Icon, SettingsIcon, GanttChartSquare, Kanban, KanbanSquare, MailIcon, MailMinus, MailPlus, LucideAreaChart, Settings } from "lucide-react";
+import { GanttChart, ChevronsLeftIcon, HomeIcon, ShoppingBagIcon, UsersIcon, BarChart2Icon, SettingsIcon, GanttChartSquare, Kanban, KanbanSquare, MailIcon, MailMinus, MailPlus, LucideAreaChart, Settings, Code2Icon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/context/AuthContext";
@@ -62,14 +62,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 { icon: <GanttChartSquare />, title: "Timeline", href: "/gantt" },
                 { icon: <MailPlus />, title: "Invite", href: "/invite" },
                 { icon: <LucideAreaChart />, title: "Analytics", href: "/analytics" },
-                { icon: <Avatar className="w-[30px] h-[30px]"><AvatarImage src={auth?.user?.photoURL || "https://github.com/shadcn.png"} alt="profile" /> </Avatar>, title: "Profile", href: "/profile" },
+                { icon: <Code2Icon />, title: "Feedback API", href: "/feedback" },
+                { icon: <Avatar className="w-[30px] h-[30px]"><AvatarImage src={auth?.user?.photoURL || "https://github.com/shadcn.png"} alt="profile" /> </Avatar>, title: auth?.user?.displayName || "User", href: "/profile" },
             ]}
         />
         <div className="flex flex-col w-full min-h-screen">
             <main className="flex-1 p-4 md:p-6 lg:p-8 xl:p-10">
                 <div className="grid gap-6 sm:grid-cols-2">
                     {children}
-                    </div>
+                </div>
             </main>
         </div>
     </div>
