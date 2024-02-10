@@ -2,7 +2,7 @@
 import React, { ReactNode, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { GanttChart, ChevronsLeftIcon, HomeIcon, ShoppingBagIcon, UsersIcon, BarChart2Icon, SettingsIcon, GanttChartSquare, Kanban, KanbanSquare, MailIcon, MailMinus, MailPlus, LucideAreaChart, Settings, Code2Icon, Tv2Icon, GlassWater, WindIcon, LucideVegan, ListVideo, KeyboardIcon } from "lucide-react";
+import { GanttChart, ChevronsLeftIcon, HomeIcon, ShoppingBagIcon, UsersIcon, BarChart2Icon, SettingsIcon, GanttChartSquare, Kanban, KanbanSquare, MailIcon, MailMinus, MailPlus, LucideAreaChart, Settings, Code2Icon, Tv2Icon, GlassWater, WindIcon, LucideVegan, ListVideo, KeyboardIcon, LogOut } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/context/AuthContext";
@@ -68,6 +68,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 { icon: <ListVideo />, title: "Live Code", href: "https://vscode.dev/github/SujalChoudhari/Coda" },
                 { icon: <Code2Icon />, title: "Feedback API", href: "/feedback" },
                 { icon: <Avatar className="w-[30px] h-[30px]"><AvatarImage src={auth?.user?.photoURL || "https://github.com/shadcn.png"} alt="profile" /> </Avatar>, title: auth?.user?.displayName || "User", href: "/profile" },
+                { icon: <LogOut />, title: "Logout", href: "/logout" },
             ]}
         />
         <div className="flex flex-col w-full min-h-screen">
