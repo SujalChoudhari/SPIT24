@@ -8,7 +8,8 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     UserCredential,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    GithubAuthProvider
 } from "firebase/auth";
 import { auth, db } from "@/firebase"
 import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
@@ -17,6 +18,7 @@ import toast from "react-hot-toast";
 interface AuthContextProps {
     user: User | null;
     googleSignIn: Function;
+    githubSignIn:Function;
     signUpWithEmailPassword: Function;
     logInWithEmailPassword: Function;
     forgotPasswordWithEmail: Function;
@@ -33,6 +35,25 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     const [user, setUser] = useState<User | null>(auth.currentUser);
     const googleSignIn = async () => {
         const provider = new GoogleAuthProvider()
+        try {
+            const result: UserCredential = await signInWithPopup(auth, provider);
+            setUser(result.user);
+
+            const userDocRef = doc(db, 'users', result.user.uid)
+            const userDoc = getDoc(userDocRef);
+            if (!(await userDoc).exists()) {
+                await setDoc(userDocRef, { name: result.user.displayName, likes: [], orders: [] },)
+            }
+
+            toast.success(`Logged in as ${result.user.email}`)
+        } catch (error) {
+            console.error('Authentication error:', error);
+            toast.error("Failed to Sign In")
+        }
+    }
+
+    const githubSignIn = async () => {
+        const provider = new GithubAuthProvider()
         try {
             const result: UserCredential = await signInWithPopup(auth, provider);
             setUser(result.user);
@@ -86,7 +107,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
         return () => unsubscribe()
     }, [user]);
 
-    return <AuthContext.Provider value={{ user, googleSignIn, signUpWithEmailPassword, logInWithEmailPassword, forgotPasswordWithEmail, logOut }}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={{ user, googleSignIn, githubSignIn, signUpWithEmailPassword, logInWithEmailPassword, forgotPasswordWithEmail, logOut }}>{children}</AuthContext.Provider>
 }
 
 export const useAuth = () => {

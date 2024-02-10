@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { LogIn, MedalIcon } from "lucide-react"
-import { BiLogoGoogle } from "react-icons/bi"
+import { BiLogoGithub, BiLogoGoogle } from "react-icons/bi"
 import { useRef, useCallback, FormEvent } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/AuthContext";
@@ -24,9 +24,18 @@ export default function Patientloginin() {
 
     };
 
-    const handleGoogleSignIn = () => {
-        console.log(auth)
-        auth?.googleSignIn();
+    const handleGoogleSignIn = async () => {
+        await auth?.googleSignIn();
+        if (auth?.user) {
+            router.push("/home")
+        }
+    }
+
+    const handleGithubSignIn = async () => {
+        await auth?.githubSignIn();
+        if (auth?.user) {
+            router.push("/home")
+        }
     }
 
     return (
@@ -86,12 +95,18 @@ export default function Patientloginin() {
                     </div>
                 </form>
                 <Button
-                    className="group my-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                    className="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                     onClick={handleGoogleSignIn}
                 >
                     <BiLogoGoogle className="mx-2" /> SignUp With Google
                 </Button>
-                <div className="mt-4 text-center text-sm">
+                <Button
+                    className="group mb-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                    onClick={handleGithubSignIn}
+                >
+                    <BiLogoGithub className="mx-2" /> Sign up With Github
+                </Button>
+                <div className="mt-2 text-center text-sm">
                     Don't have an account?
                     <Link className="underline" href="/signup">
                         Sign up
