@@ -52,7 +52,6 @@ async function run(text: string) {
 }
 
 export async function GET(request: any) {
-    console.log(request);
     try {
         // Extract text from the query parameter
         const text = request.nextUrl.searchParams.get("query");

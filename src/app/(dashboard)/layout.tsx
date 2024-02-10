@@ -2,7 +2,7 @@
 import React, { ReactNode, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { GanttChart, ChevronsLeftIcon, HomeIcon, ShoppingBagIcon, UsersIcon, BarChart2Icon, SettingsIcon, GanttChartSquare, Kanban, KanbanSquare, MailIcon, MailMinus, MailPlus, LucideAreaChart, Settings, Code2Icon, Tv2Icon, GlassWater, WindIcon, LucideVegan, ListVideo, KeyboardIcon, LogOut } from "lucide-react";
+import { GanttChart, ChevronsLeftIcon, HomeIcon, ShoppingBagIcon, UsersIcon, BarChart2Icon, SettingsIcon, GanttChartSquare, Kanban, KanbanSquare, MailIcon, MailMinus, MailPlus, LucideAreaChart, Settings, Code2Icon, Tv2Icon, GlassWater, WindIcon, LucideVegan, ListVideo, KeyboardIcon, LogOut, HelpingHand, ShieldCheck } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/context/AuthContext";
@@ -61,6 +61,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 { icon: <HomeIcon />, title: "Home", href: "/home" },
                 { icon: <KanbanSquare />, title: "Sprints", href: "/tasks" },
                 { icon: <GanttChartSquare />, title: "Timeline", href: "/gantt" },
+                { icon: <ShieldCheck />, title: "Ask AI", href: "/ask-ai" },
                 { icon: <MailPlus />, title: "Invite", href: "/invite" },
                 { icon: <LucideAreaChart />, title: "Analytics", href: "/analytics" },
                 { icon: <KeyboardIcon />, title: "Chat", href: "/chat" },

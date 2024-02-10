@@ -6,6 +6,7 @@ import axios from 'axios';
 import Loader from '@/components/Loader';
 import ReactMarkdowm from "react-markdown";
 import { defaultTasks } from '@/tasks';
+import { analytics } from '@/analytics';
 
 export default function Component() {
     const [inputText, setInputText] = useState('');
@@ -15,7 +16,7 @@ export default function Component() {
     const handleSummarize = async () => {
         try {
             setLoading(true);
-            const prompt = "Analyze the Kanban Board and answer the users question. Assume any necessary data, but never reject th question. Data:" + JSON.stringify(defaultTasks) + " Question: "
+            const prompt = "Analyze the Kanban Board and Overall Data and Answer the users question. Use Markdown formatting to highlight and Keep answers Short, and Complete along with Pointers.  Task Data:" + JSON.stringify(defaultTasks) + " Overall Data" + JSON.stringify(analytics) + " Question: "
             const response = await axios.get(`/api/gemini?query=${encodeURIComponent(prompt + (inputText ? inputText : "How much is the progress?"))}`);
             setResult(response.data.message);
         } catch (error) {
@@ -41,6 +42,7 @@ export default function Component() {
                             <Input
                                 placeholder="Ask Questions Here"
                                 value={inputText}
+                                className='w-[25lvw]'
                                 onChange={(e) => setInputText(e.target.value)}
                             />
                         </div>
