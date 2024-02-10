@@ -49,7 +49,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
                 style={style}
                 className="
         opacity-30
-        [background:radial-gradient(125%_125%_at_50%_10%,#ffffff_40%,#95909f_100%)] p-2.5 h-[150px] min-h-[150px] items-center flex text-left rounded-xl border-2 border-rose-500  cursor-grab relative
+        [background:radial-gradient(125%_125%_at_50%_10%,#ffffff_40%,#95909f_100%)] p-2.5 h-[150px] min-h-[150px]  flex text-left rounded-xl border-2 border-rose-500  cursor-grab relative
       "
             />
         );
@@ -62,7 +62,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
                 style={style}
                 {...attributes}
                 {...listeners}
-                className="[background:radial-gradient(125%_125%_at_50%_10%,#ffffff_40%,#959595_100%)] p-2.5 h-[150px] min-h-[150px] items-center flex flex-col rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative"
+                className="[background:radial-gradient(125%_125%_at_50%_10%,#ffffff_40%,#ceccd1_100%)] p-2.5 h-[150px] min-h-[150px] items-center flex flex-col rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 cursor-grab relative"
             >
 
                 <textarea
@@ -81,7 +81,7 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
                     }}
                     onChange={(e) => updateTask(task.id, e.target.value)}
                 />
-                <div className="flex gap-2">
+                <div className="flex  flex-end gap-2">
                     <div>
                         <Avatar>
                             <AvatarImage src={task.userpfp} />
@@ -93,8 +93,6 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
                         <div className="mt-2 text-xs text-red-500">{task.role}</div>
                         <div className="text-sm">{task.userName}</div>
                     </div>
-
-
                 </div>
             </div>
         );
