@@ -4,7 +4,7 @@ export const defaultTasks: Task[] = [
     {
         id: "1",
         columnId: "todo",
-        content: "Implement authentication system",
+        content: "Issue #79: Implement authentication system",
         userName: "Sujal",
         role: "Developer",
         userpfp: "./sujal-pfp.png",
@@ -28,7 +28,7 @@ export const defaultTasks: Task[] = [
     {
         id: "4",
         columnId: "doing",
-        content: "Optimize database queries for performance",
+        content: "Issue #82: Optimize database queries for performance",
         userName: "Anish",
         role: "Developer",
         userpfp: "./anish-pfp.jpg",
@@ -52,7 +52,7 @@ export const defaultTasks: Task[] = [
     {
         id: "7",
         columnId: "done",
-        content: "Fix bugs reported in the last sprint",
+        content: "Issue #85: Fix bugs reported in the last sprint",
         userName: "Anish",
         role: "Developer",
         userpfp: "./anish-pfp.jpg",
@@ -76,7 +76,7 @@ export const defaultTasks: Task[] = [
     {
         id: "10",
         columnId: "todo",
-        content: "Implement new feature according to specifications",
+        content: "Issue #88: Implement new feature according to specifications",
         userName: "Anish",
         role: "Developer",
         userpfp: "./anish-pfp.jpg",
