@@ -23,6 +23,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "firebase": "^10.8.0",
+    "frappe-gantt": "^0.6.1",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.323.0",
     "ms": "^2.1.3",
