@@ -68,7 +68,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 { icon: <Tv2Icon />, title: "Team Meet", href: "/team-meet" },
                 { icon: <ListVideo />, title: "Live Code", href: "https://vscode.dev/github/SujalChoudhari/Coda" },
                 { icon: <Code2Icon />, title: "Feedback API", href: "/feedback" },
-                { icon: <Avatar className="w-[30px] h-[30px]"><AvatarImage src={auth?.user?.photoURL || "https://github.com/shadcn.png"} alt="profile" /> </Avatar>, title: auth?.user?.displayName || "User", href: "/profile" },
+                { icon: <Avatar className="w-[30px] h-[30px]"><AvatarImage src={auth?.user?.photoURL || "https://github.com/shadcn.png"} alt="profile" /> </Avatar>, title: auth?.user?.displayName || "User", href: "/home" },
                 { icon: <LogOut />, title: "Logout", href: "/logout" },
             ]}
         />

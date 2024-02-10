@@ -11,8 +11,29 @@ import { ResponsiveBar } from "@nivo/bar";
 import { useAuth } from '@/context/AuthContext';
 import { ActivityIcon, ArrowDownToDotIcon, BarChart, BarChartIcon, CalendarIcon, ChevronRightIcon, FileWarning, LineChartIcon, ListTodo, MailWarning, PlusIcon, Redo2, SearchIcon, TimerIcon } from "lucide-react";
 import { analytics } from "@/analytics";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
+import { useEffect } from "react";
 
 export default function analy1() {
+
+    const driverObj = driver({
+        showProgress: true,
+        steps: [
+            { element: '#inprogress', popover: { title: 'Current Progress', description: 'This the the collective progress of the product development phase', side: "left", align: 'start' } },
+            { element: '#expvsbud', popover: { title: 'Comparison', description: 'Compare your alloted vs spend money', side: "left", align: 'start' } },
+            { element: '#upcomming', popover: { title: 'Upcomming', description: 'Upcomming Sprints are listed Here', side: "left", align: 'start' } },
+            { element: '#tasks', popover: { title: 'Latest Sprint', description: 'Tasks related to active sprint are shown here. ', side: "right", align: 'start' } },
+            { element: '#general', popover: { title: 'Overall Stats', description: 'Collection of important stats, Ask questions related to this on "Ask AI"', side: "right", align: 'start' } },
+
+        ]
+    });
+
+
+    useEffect(() => {
+        driverObj.drive()
+    }, [])
+
     const auth = useAuth();
     return (
         <div key="1" className="flex flex-col w-[80lvw] min-h-screen">
@@ -48,8 +69,8 @@ export default function analy1() {
             </header>
             <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+                    <Card id="inprogress">
+                        <CardHeader  className="flex flex-row items-center justify-between pb-2 space-y-0">
                             <CardTitle className="text-sm font-medium">In Progress</CardTitle>
                             <ActivityIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                         </CardHeader>
@@ -73,7 +94,7 @@ export default function analy1() {
                             </div>
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card id="expvsbud">
                         <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
                             <CardTitle className="text-sm font-medium">Expenditure vs Budget</CardTitle>
                             <LineChartIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
@@ -83,7 +104,7 @@ export default function analy1() {
                             <CurvedlineChart className="h-[150px]" />
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card id="upcomming">
                         <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
                             <CardTitle className="text-sm font-medium">Upcoming</CardTitle>
                             <CalendarIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
@@ -109,7 +130,7 @@ export default function analy1() {
                         </CardContent>
                     </Card>
                 </div>
-                <Card>
+                <Card id="tasks">
                     <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
                         <CardTitle className="text-sm font-medium">Tasks</CardTitle>
                         <DropdownMenu>
@@ -152,7 +173,7 @@ export default function analy1() {
                         </div>
                     </CardContent>
                 </Card>
-                <div className="grid grid-cols-3 gap-4">
+                <div id="general" className="grid grid-cols-3 gap-4">
                     <Card className="h-full w-[30vw] max-w-xs">
                         <CardHeader className="grid gap-2">
                             <div className="flex items-center gap-2">

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '@/firebase';
 import { Button } from '@/components/ui/button';
@@ -7,8 +7,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { BiLogoFlutter, BiLogoJava, BiLogoJavascript, BiLogoPython, BiSolidDiamond, BiStar } from 'react-icons/bi';
 import BarChart from '@/components/BarChart';
 import { Diamond, DiamondIcon } from 'lucide-react';
+import "driver.js/dist/driver.css";
+import { driver } from "driver.js";
 
 export default function Page() {
+
+    const driverObj = driver({
+        showProgress: true,
+        steps: [
+            { element: '#refresh', popover: { title: 'Fetch Latest ', description: 'Fetch the Latest Feedback Data', side: "left", align: 'start' } },
+            { element: '#users', popover: { title: 'Count of users ', description: '', side: "left", align: 'start' } },
+            { element: '#forms', popover: { title: 'Count of Feedback forms submitted', description: '', side: "left", align: 'start' } },
+            { element: '#sdk', popover: { title: 'Use the SDK ', description: 'Use the SDK to embed feedback forms in your application (in development)', side: "left", align: 'start' } },
+            { element: '#examples', popover: { title: 'Examples ', description: 'Example on how to use the SDK, Croudsourced (unofficial)', side: "left", align: 'start' } },
+
+        ]
+    });
+
     const [usersData, setUserData] = useState<any>([]);
     const [feedbackData, setFeedBackData] = useState<any>([]);
 
@@ -63,29 +78,33 @@ export default function Page() {
         fetchData();
     };
 
+    useEffect(() => {
+        driverObj.drive();
+    }, [])
+
     return (
         <div className="bg-white w-[80lvw]">
             <div className="flex justify-between p-4">
                 <h2 className="text-xl font-semibold">Analytics of Latest Sprint</h2>
                 <Button onClick={handleRefresh}>
-                    <h2 className="text-xl font-semibold">Refresh Data</h2>
+                    <h2 id='refresh' className="text-xl font-semibold">Refresh Data</h2>
                 </Button>
             </div>
             <div className="grid grid-cols-2 gap-4 p-4">
-                <div className="bg-gray-100 p-4 rounded-lg">
+                <div className="bg-gray-100 p-4 rounded-lg" id='users'>
                     <h3 className="font-semibold flex items-center mb-4">
                         Users
                     </h3>
                     <BarChart data={usersData} colors={["#6325eb"]} keys={["count"]} indexBy="name" />
                 </div>
-                <div className="bg-gray-100 p-4 rounded-lg">
+                <div className="bg-gray-100 p-4 rounded-lg" id='forms'>
                     <h3 className="font-semibold flex items-center mb-4">
                         Feedback Submissions
                     </h3>
                     <BarChart data={feedbackData} colors={["#9910eb"]} keys={["count"]} indexBy="name" />
                 </div>
             </div>
-            <div className="p-4">
+            <div className="p-4" id='sdk'>
                 <h2 className="text-2xl font-semibold mb-4">SDKs for Feedback Analytics
                     <Button className='mx-2' variant={"secondary"}>Unlock with Premium <BiSolidDiamond className='mx-2' /></Button>
                 </h2>
@@ -116,7 +135,7 @@ export default function Page() {
                     </div>
                 </div>
             </div>
-            <div className="p-4">
+            <div className="p-4" id='examples'>
                 <h2 className="text-2xl font-semibold mb-4">Example Implementation of API</h2>
                 <div className="grid grid-cols-3 gap-4">
                     <Card className="bg-gray-100 ">

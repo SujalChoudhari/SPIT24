@@ -8,6 +8,8 @@ import { Progress } from '@/components/ui/progress';
 import { useAuth } from '@/context/AuthContext';
 import { db } from '@/firebase';
 import { collection, query, getDocs, addDoc } from 'firebase/firestore';
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 
 const tasksData = [
     { title: "Fixing a bug", description: "Find and resolve a bug in the codebase.", progress: 10 },
@@ -27,13 +29,23 @@ const Component = () => {
     const [tasks, setTasks] = useState([]);
     const auth = useAuth();
 
+    const driverObj = driver({
+        showProgress: true,
+        steps: [
+            { element: '#avatar', popover: { title: 'Your Profile', description: 'Here is your Profile Picture', side: "left", align: 'start' } },
+            { element: '#details', popover: { title: 'Your Details', description: 'Here is your Profile Details', side: "right", align: 'start' } },
+            { element: '#tasks', popover: { title: 'Your Tasks', description: 'Find All your tasks', side: "right", align: 'start' } },
+
+        ]
+    });
+
     useEffect(() => {
         const fetchTasks = async () => {
             try {
                 const userTasksCollection = collection(db, 'users', auth?.user?.uid, 'tasks');
                 const tasksQuery = query(userTasksCollection);
                 const snapshot = await getDocs(tasksQuery);
-
+                driverObj.drive()
                 if (snapshot.empty) {
                     // Add demo tasks if the collection is empty
                     const demoTasks = [
@@ -78,6 +90,7 @@ const Component = () => {
         <div className="flex min-h-screen items-start w-full py-6">
             <img
                 alt="Avatar"
+                id="avatar"
                 className="rounded-full"
                 height="80"
                 src={auth?.user?.photoURL || "/imga.png"}
@@ -88,14 +101,14 @@ const Component = () => {
                 width="80"
             />
             <div className="container grid gap-6 px-4 mt-5 ml-0 md:px-6">
-                <div className="flex flex-col">
+                <div id='details' className="flex flex-col">
                     <h1 className="text-2xl font-bold">{auth?.user?.displayName}</h1>
                     <p className="text-gray-500 dark:text-gray-400">ID: {auth?.user?.uid}</p>
                     <p className="text-gray-500 font-bold dark:text-gray-400">{auth?.user?.email}</p>
                     <p className="text-gray-500 dark:text-gray-400">Designer</p>
                 </div>
 
-                <div className="grid gap-4 w-[65lvw]  mx-auto mt-4">
+                <div id='tasks' className="grid gap-4 w-[65lvw]  mx-auto mt-4">
                     {tasks.map((task, index) => (
                         <Card key={index}>
                             <CardHeader >
