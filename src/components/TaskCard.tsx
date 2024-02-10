@@ -16,6 +16,9 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
     const [mouseIsOver, setMouseIsOver] = useState(false);
     const [editMode, setEditMode] = useState(true);
 
+    const role = "Designer"; // Dummy role value
+    const personName = "John Doe"; // Dummy person's name value
+
     const {
         setNodeRef,
         attributes,
@@ -84,14 +87,13 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
                 <div className="flex gap-2">
                     <div>
                         <Avatar>
-                            <AvatarImage src={task.userpfp} />
-                            <AvatarFallback>{task.userName}</AvatarFallback>
-
+                            <AvatarImage src="https://github.com/shadcn.png" />
+                            <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
                     </div>
                     <div>
-                        <div className="mt-2 text-xs text-red-500">{task.role}</div>
-                        <div className="text-sm">{task.userName}</div>
+                        <div className="mt-2 text-xs text-red-500">{role}</div>
+                        <div className="text-sm">{personName}</div>
                     </div>
 
 
@@ -121,14 +123,13 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
             <div className="flex gap-2">
                 <div>
                     <Avatar>
-                        <AvatarImage src={task.userpfp} />
-                        <AvatarFallback>{task.userName}</AvatarFallback>
-
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                 </div>
                 <div>
-                    <div className="mt-2 text-xs text-red-500">{task.role}</div>
-                    <div className="text-sm">{task.userName}</div>
+                    <div className="mt-2 text-xs text-red-500">{role}</div>
+                    <div className="text-sm">{personName}</div>
                 </div>
 
 

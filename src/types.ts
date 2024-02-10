@@ -9,7 +9,4 @@ export type Task = {
   id: Id;
   columnId: Id;
   content: string;
-  userName: string;
-  role: string;
-  userpfp: string;
 };

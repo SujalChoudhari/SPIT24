@@ -31,89 +31,75 @@ const defaultCols: Column[] = [
     title: "Done",
   },
 ];
+
 const defaultTasks: Task[] = [
   {
     id: "1",
     columnId: "todo",
-    content: "Implement authentication system",
-    userName: "Sujal",
-    role: "Developer",
-    userpfp: "./sujal-pfp.png",
+    content: "List admin APIs for dashboard",
   },
   {
     id: "2",
-    columnId: "doing",
-    content: "Design user interface for the dashboard",
-    userName: "Soham",
-    role: "Designer",
-    userpfp: "./soham-pfp.jpg",
+    columnId: "todo",
+    content:
+      "Develop user registration functionality with OTP delivered on SMS after email confirmation and phone number confirmation",
   },
   {
     id: "3",
-    columnId: "todo",
-    content: "Define product roadmap for the next quarter",
-    userName: "Saniyaa",
-    role: "Product Manager",
-    userpfp: "./saniyaa-pfp.png",
+    columnId: "doing",
+    content: "Conduct security testing",
   },
   {
     id: "4",
     columnId: "doing",
-    content: "Optimize database queries for performance",
-    userName: "Anish",
-    role: "Developer",
-    userpfp: "./anish-pfp.jpg",
+    content: "Analyze competitors",
   },
   {
     id: "5",
     columnId: "done",
-    content: "Create wireframes for new feature",
-    userName: "Soham",
-    role: "Designer",
-    userpfp: "./soham-pfp.jpg",
+    content: "Create UI kit documentation",
   },
   {
     id: "6",
-    columnId: "todo",
-    content: "Gather user feedback on current features",
-    userName: "Saniyaa",
-    role: "Product Manager",
-    userpfp: "./saniyaa-pfp.png",
+    columnId: "done",
+    content: "Dev meeting",
   },
   {
     id: "7",
     columnId: "done",
-    content: "Fix bugs reported in the last sprint",
-    userName: "Anish",
-    role: "Developer",
-    userpfp: "./anish-pfp.jpg",
+    content: "Deliver dashboard prototype",
   },
   {
     id: "8",
-    columnId: "done",
-    content: "Create visual assets for marketing campaign",
-    userName: "Soham",
-    role: "Designer",
-    userpfp: "./soham-pfp.jpg",
+    columnId: "todo",
+    content: "Optimize application performance",
   },
   {
     id: "9",
     columnId: "todo",
-    content: "Prioritize and refine the product backlog",
-    userName: "Saniyaa",
-    role: "Product Manager",
-    userpfp: "./saniyaa-pfp.png",
+    content: "Implement data validation",
   },
   {
     id: "10",
     columnId: "todo",
-    content: "Implement new feature according to specifications",
-    userName: "Anish",
-    role: "Developer",
-    userpfp: "./anish-pfp.jpg",
+    content: "Design database schema",
+  },
+  {
+    id: "11",
+    columnId: "todo",
+    content: "Integrate SSL web certificates into workflow",
+  },
+  {
+    id: "12",
+    columnId: "doing",
+    content: "Implement error logging and monitoring",
+  },
+  {
+    id: "13",
+    columnId: "doing",
+    content: "Design and implement responsive UI",
   },
 ];
-
 
 function KanbanBoard() {
   const [columns, setColumns] = useState<Column[]>(defaultCols);
@@ -227,9 +213,6 @@ function KanbanBoard() {
       id: generateId(),
       columnId,
       content: `Task ${tasks.length + 1}`,
-      userName: "Soham",
-      role: "Designer",
-      userpfp: "./soham-pfp.jpg"
     };
 
     setTasks([...tasks, newTask]);
