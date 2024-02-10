@@ -87,8 +87,8 @@ export default function Page() {
             </div>
             <div className="p-4">
                 <h2 className="text-2xl font-semibold mb-4">SDKs for Feedback Analytics
-                 <Button className='mx-2' variant={"secondary"}>Unlock with Premium <BiSolidDiamond className='mx-2'/></Button>
-                 </h2>
+                    <Button className='mx-2' variant={"secondary"}>Unlock with Premium <BiSolidDiamond className='mx-2' /></Button>
+                </h2>
                 <div className="grid grid-cols-4 gap-4">
                     <div className="bg-gray-100 p-4 rounded-lg">
                         <BiLogoJavascript className="w-[40px]" />
