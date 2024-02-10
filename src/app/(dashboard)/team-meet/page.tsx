@@ -36,6 +36,7 @@ export default function TeamMeet() {
 
     return (
         <div className="w-[75lvw] mx-4">
+            {/* @ts-ignore */}
             <div ref={myMeeting} />
         </div>
 

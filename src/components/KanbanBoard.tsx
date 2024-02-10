@@ -16,6 +16,7 @@ import {
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
 import TaskCard from "./TaskCard";
+import { defaultTasks } from "@/tasks";
 
 const defaultCols: Column[] = [
   {
@@ -29,88 +30,6 @@ const defaultCols: Column[] = [
   {
     id: "done",
     title: "Done",
-  },
-];
-const defaultTasks: Task[] = [
-  {
-    id: "1",
-    columnId: "todo",
-    content: "Implement authentication system",
-    userName: "Sujal",
-    role: "Developer",
-    userpfp: "./sujal-pfp.png",
-  },
-  {
-    id: "2",
-    columnId: "doing",
-    content: "Design user interface for the dashboard",
-    userName: "Soham",
-    role: "Designer",
-    userpfp: "./soham-pfp.jpg",
-  },
-  {
-    id: "3",
-    columnId: "todo",
-    content: "Define product roadmap for the next quarter",
-    userName: "Saniyaa",
-    role: "Product Manager",
-    userpfp: "./saniyaa-pfp.png",
-  },
-  {
-    id: "4",
-    columnId: "doing",
-    content: "Optimize database queries for performance",
-    userName: "Anish",
-    role: "Developer",
-    userpfp: "./anish-pfp.jpg",
-  },
-  {
-    id: "5",
-    columnId: "done",
-    content: "Create wireframes for new feature",
-    userName: "Soham",
-    role: "Designer",
-    userpfp: "./soham-pfp.jpg",
-  },
-  {
-    id: "6",
-    columnId: "todo",
-    content: "Gather user feedback on current features",
-    userName: "Saniyaa",
-    role: "Product Manager",
-    userpfp: "./saniyaa-pfp.png",
-  },
-  {
-    id: "7",
-    columnId: "done",
-    content: "Fix bugs reported in the last sprint",
-    userName: "Anish",
-    role: "Developer",
-    userpfp: "./anish-pfp.jpg",
-  },
-  {
-    id: "8",
-    columnId: "done",
-    content: "Create visual assets for marketing campaign",
-    userName: "Soham",
-    role: "Designer",
-    userpfp: "./soham-pfp.jpg",
-  },
-  {
-    id: "9",
-    columnId: "todo",
-    content: "Prioritize and refine the product backlog",
-    userName: "Saniyaa",
-    role: "Product Manager",
-    userpfp: "./saniyaa-pfp.png",
-  },
-  {
-    id: "10",
-    columnId: "todo",
-    content: "Implement new feature according to specifications",
-    userName: "Anish",
-    role: "Developer",
-    userpfp: "./anish-pfp.jpg",
   },
 ];
 
