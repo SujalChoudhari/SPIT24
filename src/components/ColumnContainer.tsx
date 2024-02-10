@@ -65,8 +65,8 @@ function ColumnContainer({
       border-2
       border-pink-500
       w-[350px]
-      h-[500px]
-      max-h-[500px]
+      h-[630px]
+      max-h-[630px]
       rounded-md
       flex
       flex-col
@@ -82,8 +82,8 @@ function ColumnContainer({
       className="
   bg-gray-100
   w-[350px]
-  h-[500px]
-  max-h-[500px]
+  h-[630px]
+  max-h-[630px]
   rounded-md
   flex
   flex-col
@@ -105,7 +105,7 @@ function ColumnContainer({
       rounded-b-none
       p-3
       font-bold
-      border-columnBackgroundColor
+      
       border-4
       flex
       items-center

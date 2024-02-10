@@ -84,9 +84,20 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
                     }}
                     onChange={(e) => updateTask(task.id, e.target.value)}
                 />
+                <div className="flex gap-2">
+                    <div>
+                        <Avatar>
+                            <AvatarImage src="https://github.com/shadcn.png" />
+                            <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                    </div>
+                    <div>
+                        <div className="mt-2 text-xs text-red-500">{role}</div>
+                        <div className="text-sm">{personName}</div>
+                    </div>
 
-                <div className="mt-2 text-xs text-gray-500">{role}</div>
-                <div className="text-sm">{personName}</div>
+
+                </div>
             </div>
         );
     }
@@ -110,18 +121,18 @@ function TaskCard({ task, deleteTask, updateTask }: Props) {
                 {task.content}
             </p>
             <div className="flex gap-2">
-            <div>
-            <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
-            </Avatar> 
-            </div>
-            <div>
-               <div className="mt-2 text-xs text-red-500">{role}</div>
-               <div className="text-sm">{personName}</div>  
-            </div>
+                <div>
+                    <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                </div>
+                <div>
+                    <div className="mt-2 text-xs text-red-500">{role}</div>
+                    <div className="text-sm">{personName}</div>
+                </div>
 
-            
+
             </div>
 
 
