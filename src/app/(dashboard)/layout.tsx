@@ -2,9 +2,10 @@
 import React, { ReactNode, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { GanttChart, ChevronsLeftIcon, HomeIcon, ShoppingBagIcon, UsersIcon, BarChart2Icon, SettingsIcon, GanttChartSquare, Kanban, KanbanSquare, MailIcon, MailMinus, MailPlus, LucideAreaChart } from "lucide-react";
+import { GanttChart, ChevronsLeftIcon, HomeIcon, ShoppingBagIcon, UsersIcon, BarChart2Icon, SettingsIcon, GanttChartSquare, Kanban, KanbanSquare, MailIcon, MailMinus, MailPlus, LucideAreaChart, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
-import PocketBase from 'pocketbase';
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { useAuth } from "@/context/AuthContext";
 
 
 interface SidebarLinkProps {
@@ -17,7 +18,7 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({ icon, title, href }) => {
     const path = usePathname();
 
     return <Link href={href}>
-        
+
         <Button className="flex items-center gap-4 rounded-lg px-4 py-2 my-2 text-sm font-medium" variant={path.includes(href) ? "default" : "ghost"}>
             {icon}
             {title}
@@ -51,8 +52,9 @@ interface LayoutProps {
     children: ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => (
-    <div className="grid min-h-screen w-full bg-gray-100/50 items-start md:grid-cols-[250px_1fr] lg:items-center xl:items-center">
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+    const auth = useAuth()
+    return <div className="grid min-h-screen w-full bg-gray-100/50 items-start md:grid-cols-[250px_1fr] lg:items-center xl:items-center">
         <Sidebar
             links={[
                 { icon: <HomeIcon />, title: "Home", href: "/home" },
@@ -60,14 +62,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => (
                 { icon: <GanttChartSquare />, title: "Timeline", href: "/gantt" },
                 { icon: <MailPlus />, title: "Invite", href: "/invite" },
                 { icon: <LucideAreaChart />, title: "Analytics", href: "/analytics" },
+                { icon: <Avatar className="w-[30px] h-[30px]"><AvatarImage src={auth?.user?.photoURL || "https://github.com/shadcn.png"} alt="profile" /> </Avatar>, title: "Profile", href: "/profile" },
             ]}
         />
         <div className="flex flex-col w-full min-h-screen">
             <main className="flex-1 p-4 md:p-6 lg:p-8 xl:p-10">
-                <div className="grid gap-6 sm:grid-cols-2">{children}</div>
+                <div className="grid gap-6 sm:grid-cols-2">
+                    {children}
+                    </div>
             </main>
         </div>
     </div>
-);
+};
 
 export default Layout;
