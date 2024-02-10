@@ -41,11 +41,10 @@ const Sidebar: React.FC<SidebarProps> = ({ links }) => {
 
         window.addEventListener('resize', handleResize);
         handleResize(); // Initial check on mount
-        console.log(links)
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    },);
 
     return (
         <div className={`flex flex-col h-full border-r bg-gray-100/40 ${isMobile ? 'md:hidden' : 'md:grid md:grid-rows-[auto_1fr]'}`}>
@@ -53,17 +52,20 @@ const Sidebar: React.FC<SidebarProps> = ({ links }) => {
                 <Link href="#">
                     <p className="flex items-center gap-2 text-xl font-bold">
                         <WindIcon className="w-6 h-6" />
-                        {!isMobile && <span>FlowByte</span>}
+                        <span>FlowByte</span>
                     </p>
                 </Link>
             </div>
             {isMobile && (
-                <div className="fixed bottom-0 left-0 right-0 bg-gray-100/50 p-4 flex justify-around">
+                <div className="fixed bottom-0 left-0 right-0 bg-gray-100 p-4 flex flex-wrap justify-center">
                     {links.map((link, index) => (
-                        <SidebarIcon key={index} {...link} />
+                        <div key={index} className="m-2">
+                            {link.icon}
+                        </div>
                     ))}
                 </div>
             )}
+
             <nav className={`flex-1 overflow-auto p-4 space-y-4 md:p-2 md:space-y-2 lg:space-y-4 ${isMobile ? 'hidden md:block' : ''}`}>
                 {links.map((link, index) => (
                     <SidebarLink key={index} {...link} />
@@ -96,7 +98,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             ]}
         />
         <div className="flex flex-col w-full min-h-screen">
-        <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]"></div></div>
+            <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]"></div></div>
             <main className="flex-1 p-4 md:p-6 lg:p-8 xl:p-10">
                 <div className="grid gap-6 sm:grid-cols-2">
                     {children}
