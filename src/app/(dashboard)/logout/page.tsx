@@ -9,7 +9,7 @@ import { CardContent, Card } from "@/components/ui/card"
 
 export default function Component() {
     return (
-        <div className="flex items-center">
+        <div className="flex  items-center">
             <Logout1/>
         </div>
 

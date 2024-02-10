@@ -26,16 +26,12 @@ export default function Patientloginin() {
 
     const handleGoogleSignIn = async () => {
         await auth?.googleSignIn();
-        if (auth?.user) {
-            router.push("/home")
-        }
+        router.push("/home")
     }
 
     const handleGithubSignIn = async () => {
         await auth?.githubSignIn();
-        if (auth?.user) {
-            router.push("/home")
-        }
+        router.push("/home")
     }
 
     return (
