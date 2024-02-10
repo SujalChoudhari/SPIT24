@@ -16,7 +16,7 @@ export default function Component() {
         try {
             setLoading(true);
             const prompt = "Analyze the Kanban Board and answer the users question. Assume any necessary data, but never reject th question. Data:" + JSON.stringify(defaultTasks) + " Question: "
-            const response = await axios.get(`/api/gemini?query=${encodeURIComponent(prompt + inputText)}`);
+            const response = await axios.get(`/api/gemini?query=${encodeURIComponent(prompt + (inputText ? inputText : "How much is the progress?"))}`);
             setResult(response.data.message);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -44,9 +44,15 @@ export default function Component() {
                                 onChange={(e) => setInputText(e.target.value)}
                             />
                         </div>
-                        <Button size="lg" onClick={handleSummarize} disabled={loading}>
-                            {loading ? 'Loading...' : 'Summarize'}
-                        </Button>
+                        <button onClick={handleSummarize} disabled={loading} className="group relative grid overflow-hidden rounded-full pl-4 pr-10 py-1 shadow-[0_1000px_0_0_hsl(0_0%_20%)_inset] transition-colors duration-200">
+                            <span>
+                                <span className="spark mask-gradient absolute inset-0 h-[100%] w-[100%] animate-flip overflow-hidden rounded-full [mask:linear-gradient(white,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:rotate-[-90deg] before:animate-rotate before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]" />
+                            </span>
+                            <span className="backdrop absolute inset-[1px] rounded-full bg-neutral-950 transition-colors duration-200 group-hover:bg-neutral-800" />
+                            <span className="z-10 py-0.5 text-sm  text-neutral-100 flex justify-center">{loading ? 'Loading...' : 'Summarize'}</span>
+                        </button>
+
+
                     </div>
                 </div>
             </div>
