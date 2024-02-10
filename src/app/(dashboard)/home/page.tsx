@@ -1,41 +1,97 @@
 "use client";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { ActivityIcon } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
+import { useAuth } from '@/context/AuthContext';
+import { db } from '@/firebase';
+import { collection, query, getDocs, addDoc } from 'firebase/firestore';
 
 const tasksData = [
-    { title: "Introduction to Web Development", description: "Complete the following tasks to finish the course", progress: 25 },
-    { title: "Introduction to Web Development", description: "Complete the following tasks to finish the course", progress: 25 },
-    { title: "Introduction to Web Development", description: "Complete the following tasks to finish the course", progress: 25 },
-    { title: "Introduction to Web Development", description: "Complete the following tasks to finish the course", progress: 25 },
-    { title: "Introduction to Web Development", description: "Complete the following tasks to finish the course", progress: 25 },
-    // Add more tasks as needed
+    { title: "Fixing a bug", description: "Find and resolve a bug in the codebase.", progress: 10 },
+    { title: "Implementing feature", description: "Add a new feature to enhance functionality.", progress: 20 },
+    { title: "Refactoring code", description: "Optimize and restructure existing code for better maintainability.", progress: 15 },
+    { title: "Writing tests", description: "Create unit tests to ensure code reliability.", progress: 10 },
+    { title: "Creating Figma design", description: "Design user interfaces and experiences using Figma.", progress: 5 },
+    { title: "Optimizing performance", description: "Identify and improve application performance bottlenecks.", progress: 25 },
+    { title: "Deploying application", description: "Deploy the application to a server or cloud platform.", progress: 30 },
+    { title: "Reviewing pull requests", description: "Review and provide feedback on code changes from team members.", progress: 15 },
+    { title: "Documenting code", description: "Write comprehensive documentation for the codebase.", progress: 10 },
+    { title: "Conducting code review", description: "Lead a thorough review of code changes in a collaborative session.", progress: 5 },
+    { title: "Meeting with stakeholders", description: "Engage in discussions with project stakeholders to gather requirements.", progress: 5 },
 ];
 
 const Component = () => {
-    const [tasks, setTasks] = useState(tasksData);
+    const [tasks, setTasks] = useState([]);
+    const auth = useAuth();
+
+    useEffect(() => {
+        const fetchTasks = async () => {
+            try {
+                const userTasksCollection = collection(db, 'users', auth?.user?.uid, 'tasks');
+                const tasksQuery = query(userTasksCollection);
+                const snapshot = await getDocs(tasksQuery);
+
+                if (snapshot.empty) {
+                    // Add demo tasks if the collection is empty
+                    const demoTasks = [
+                        { title: "Fixing a bug", description: "Find and resolve a bug in the codebase.", progress: 10 },
+                        { title: "Implementing feature", description: "Add a new feature to enhance functionality.", progress: 20 },
+                        { title: "Refactoring code", description: "Optimize and restructure existing code for better maintainability.", progress: 15 },
+                        { title: "Writing tests", description: "Create unit tests to ensure code reliability.", progress: 10 },
+                        { title: "Creating Figma design", description: "Design user interfaces and experiences using Figma.", progress: 5 },
+                        { title: "Optimizing performance", description: "Identify and improve application performance bottlenecks.", progress: 25 },
+                        { title: "Deploying application", description: "Deploy the application to a server or cloud platform.", progress: 30 },
+                        { title: "Reviewing pull requests", description: "Review and provide feedback on code changes from team members.", progress: 15 },
+                        { title: "Documenting code", description: "Write comprehensive documentation for the codebase.", progress: 10 },
+                        { title: "Conducting code review", description: "Lead a thorough review of code changes in a collaborative session.", progress: 5 },
+                        { title: "Meeting with stakeholders", description: "Engage in discussions with project stakeholders to gather requirements.", progress: 5 },
+                    ];
+
+
+                    // Randomly choose a subset of tasks to add
+                    const numberOfTasksToAdd = Math.floor(Math.random() * demoTasks.length) + 1;
+                    const randomTasks = demoTasks.sort(() => 0.5 - Math.random()).slice(0, numberOfTasksToAdd);
+
+                    randomTasks.forEach(async (task) => {
+                        await addDoc(userTasksCollection, task);
+                    });
+
+                    setTasks(randomTasks);
+                } else {
+                    const userTasks = snapshot.docs.map((doc) => doc.data());
+                    setTasks(userTasks);
+                }
+            } catch (error) {
+                console.error('Error fetching tasks from Firestore:', error);
+            }
+        };
+
+        if (auth?.user?.uid) {
+            fetchTasks();
+        }
+    }, [auth?.user?.uid]);
 
     return (
         <div className="flex min-h-screen items-start w-full py-6">
-             <img
-              alt="Avatar"
-              className="rounded-full"
-              height="80"
-              src="/imga.png"
-              style={{
-                aspectRatio: "80/80",
-                objectFit: "cover",
-              }}
-              width="80"
+            <img
+                alt="Avatar"
+                className="rounded-full"
+                height="80"
+                src={auth?.user?.photoURL || "/imga.png"}
+                style={{
+                    aspectRatio: "80/80",
+                    objectFit: "cover",
+                }}
+                width="80"
             />
             <div className="container grid gap-6 px-4 mt-5 ml-0 md:px-6">
                 <div className="flex flex-col">
-                    <h1 className="text-2xl font-bold">Alice Freeman</h1>
-                    <p className="text-gray-500 dark:text-gray-400">alice.freeman@example.com</p>
+                    <h1 className="text-2xl font-bold">{auth?.user?.displayName}</h1>
+                    <p className="text-gray-500 dark:text-gray-400">ID: {auth?.user?.uid}</p>
+                    <p className="text-gray-500 font-bold dark:text-gray-400">{auth?.user?.email}</p>
                     <p className="text-gray-500 dark:text-gray-400">Designer</p>
-                    <p className="text-gray-500 dark:text-gray-400">ID: 123456</p>
                 </div>
 
                 <div className="grid gap-4 w-[65lvw]  mx-auto mt-4">
