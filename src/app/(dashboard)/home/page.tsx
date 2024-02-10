@@ -63,15 +63,15 @@ const Component = () => {
                     ];
 
 
-                    // Randomly choose a subset of tasks to add
-                    const numberOfTasksToAdd = Math.floor(Math.random() * demoTasks.length) + 1;
-                    const randomTasks = demoTasks.sort(() => 0.5 - Math.random()).slice(0, numberOfTasksToAdd);
+                    // // Randomly choose a subset of tasks to add
+                    // const numberOfTasksToAdd = Math.floor(Math.random() * demoTasks.length) + 1;
+                    // const randomTasks = demoTasks.sort(() => 0.5 - Math.random()).slice(0, numberOfTasksToAdd);
 
-                    randomTasks.forEach(async (task) => {
-                        await addDoc(userTasksCollection, task);
-                    });
+                    // demoTasks.forEach(async (task) => {
+                    //     await addDoc(userTasksCollection, task);
+                    // });
 
-                    setTasks(randomTasks);
+                    setTasks(demoTasks);
                 } else {
                     const userTasks = snapshot.docs.map((doc) => doc.data());
                     setTasks(userTasks);

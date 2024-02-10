@@ -28,10 +28,10 @@ export default function Patientloginin() {
         await auth?.googleSignIn();
         router.push("/home")
     }
-
+    
     const handleGithubSignIn = async () => {
         await auth?.githubSignIn();
-        router.push("/home")
+        router.push("/get-repo")
     }
 
     return (

@@ -24,7 +24,7 @@ export default function Patientloginin() {
 
     const handleGithubSignIn = async () => {
         await auth?.githubSignIn();
-        router.push("/home")
+        router.push("/get-repo")
     }
 
     const handleUserSignIn = (event: React.FormEvent<HTMLFormElement>) => {
