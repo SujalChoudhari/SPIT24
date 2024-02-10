@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { MedalIcon, User2Icon, UserCheckIcon, UserSquare } from "lucide-react"
-import { BiLogoGoogle } from "react-icons/bi"
+import { BiLogoGithub, BiLogoGoogle } from "react-icons/bi"
 import { useRef, useCallback, FormEvent } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/AuthContext";
@@ -17,10 +17,18 @@ export default function Patientloginin() {
     const nameRef = useRef();
     const router = useRouter();
 
-    const handleGoogleSignIn = () => {
-        console.log(auth)
-        auth?.googleSignIn();
-        router.push("/home")
+    const handleGoogleSignIn = async () => {
+        await auth?.googleSignIn();
+        if (auth?.user) {
+            router.push("/home")
+        }
+    }
+
+    const handleGithubSignIn = async () => {
+        await auth?.githubSignIn();
+        if (auth?.user) {
+            router.push("/home")
+        }
     }
 
     const handleUserSignIn = (event: React.FormEvent<HTMLFormElement>) => {
@@ -114,7 +122,14 @@ export default function Patientloginin() {
                 >
                     <BiLogoGoogle className="mx-2" /> Login With Google
                 </Button>
-                <div className="mt-4 text-center text-sm">
+
+                <Button
+                    className="group my-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                    onClick={handleGithubSignIn}
+                >
+                    <BiLogoGithub className="mx-2" /> Login With Github
+                </Button>
+                <div className="mt-2 text-center text-sm">
                     Already have an account?
                     <Link className="underline" href="/login">
                         Login In
