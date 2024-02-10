@@ -1,11 +1,10 @@
 "use client";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { GanttChart, ChevronsLeftIcon, HomeIcon, ShoppingBagIcon, UsersIcon, BarChart2Icon, SettingsIcon, GanttChartSquare, Kanban, KanbanSquare, MailIcon, MailMinus, MailPlus, LucideAreaChart } from "lucide-react";
 import { usePathname } from "next/navigation";
+import PocketBase from 'pocketbase';
 
 
 interface SidebarLinkProps {
@@ -16,11 +15,13 @@ interface SidebarLinkProps {
 
 const SidebarLink: React.FC<SidebarLinkProps> = ({ icon, title, href }) => {
     const path = usePathname();
+
     return <Link href={href}>
+        
         <Button className="flex items-center gap-4 rounded-lg px-4 py-2 my-2 text-sm font-medium" variant={path.includes(href) ? "default" : "ghost"}>
             {icon}
             {title}
-        </Button    >
+        </Button>
     </Link>
 };
 
