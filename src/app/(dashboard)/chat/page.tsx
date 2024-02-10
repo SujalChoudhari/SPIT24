@@ -67,6 +67,7 @@ const Chat: React.FC = () => {
                             className={`max-w-xs ${auth?.user?.displayName === message.user ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
                                 } p-2 rounded-lg`}
                         >
+                            <sup>{message.user === auth?.user?.displayName ? "You" : message.user}</sup>
                             <ReactMarkdown>{message.text}</ReactMarkdown>
                         </div>
                     </div>
