@@ -59,7 +59,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Sidebar
             links={[
                 { icon: <HomeIcon />, title: "Home", href: "/home" },
-                { icon: <KanbanSquare />, title: "Tasks", href: "/tasks" },
+                { icon: <KanbanSquare />, title: "Sprints", href: "/tasks" },
                 { icon: <GanttChartSquare />, title: "Timeline", href: "/gantt" },
                 { icon: <MailPlus />, title: "Invite", href: "/invite" },
                 { icon: <LucideAreaChart />, title: "Analytics", href: "/analytics" },
