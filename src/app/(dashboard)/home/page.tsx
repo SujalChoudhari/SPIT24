@@ -1,4 +1,4 @@
-//@ts-nocheck
+
 "use client";
 import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import { db } from '@/firebase';
 import { collection, query, getDocs, addDoc } from 'firebase/firestore';
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
+import Link from 'next/link';
 
 const tasksData = [
     { title: "Fixing a bug", description: "Find and resolve a bug in the codebase.", progress: 10 },
@@ -33,8 +34,9 @@ const Component = () => {
         showProgress: true,
         steps: [
             { element: '#avatar', popover: { title: 'Your Profile', description: 'Here is your Profile Picture', side: "left", align: 'start' } },
-            { element: '#details', popover: { title: 'Your Details', description: 'Here is your Profile Details', side: "right", align: 'start' } },
-            { element: '#tasks', popover: { title: 'Your Tasks', description: 'Find All your tasks', side: "right", align: 'start' } },
+            { popover: { title: 'Your Details', description: 'Here is your Profile Details', side: "right", align: 'start' } },
+            { popover: { title: 'Your Tasks', description: 'Find All your tasks', side: "right", align: 'start' } },
+            { element:"#figma",popover: { title: 'View Figma', description: 'View Project Figma', side: "left", align: 'start' } },
 
         ]
     });
@@ -61,15 +63,6 @@ const Component = () => {
                         { title: "Conducting code review", description: "Lead a thorough review of code changes in a collaborative session.", progress: 5 },
                         { title: "Meeting with stakeholders", description: "Engage in discussions with project stakeholders to gather requirements.", progress: 5 },
                     ];
-
-
-                    // // Randomly choose a subset of tasks to add
-                    // const numberOfTasksToAdd = Math.floor(Math.random() * demoTasks.length) + 1;
-                    // const randomTasks = demoTasks.sort(() => 0.5 - Math.random()).slice(0, numberOfTasksToAdd);
-
-                    // demoTasks.forEach(async (task) => {
-                    //     await addDoc(userTasksCollection, task);
-                    // });
 
                     setTasks(demoTasks);
                 } else {
@@ -108,6 +101,7 @@ const Component = () => {
                     <p className="text-gray-500 dark:text-gray-400">Designer</p>
                 </div>
 
+
                 <div id='tasks' className="grid gap-4 w-[65lvw]  mx-auto mt-4">
                     {tasks.map((task, index) => (
                         <Card key={index}>
@@ -125,6 +119,7 @@ const Component = () => {
                                     <Progress
                                         className="h-2 rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 dark:bg-gradient-to-r dark:from-pink-600 dark:to-purple-700"
                                         value={task.progress}
+                                        //@ts-ignore
                                         variant={"linear"}
                                     />
                                 </div>
@@ -132,6 +127,9 @@ const Component = () => {
                         </Card>
                     ))}
                 </div>
+            </div>
+            <div id='figma' className='flex item-start'>
+                <Link  href="/dboard"><Button className='mx-2'>Open Project Figma</Button></Link>
             </div>
         </div>
     );
