@@ -8,7 +8,7 @@ import { ResponsiveLine } from "@nivo/line"
 
 export function Burnupdown() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#f4f7f9] p-4">
+    <div className="flex flex-col mt-5 items-center justify-center min-h-screen bg-[#f4f7f9] p-4">
       <div className="flex max-w-4xl w-full bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="w-1/2 p-6 space-y-6">
           <div className="flex items-center space-x-2">

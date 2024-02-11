@@ -1,6 +1,7 @@
 "use client"
 import React, { useCallback, useEffect } from "react";
 import "gantt-schedule-timeline-calendar/dist/style.css";
+import { Burnupdown } from "@/components/burnupdown";
 
 let GSTC: any, gstc: any, state: any;
 
@@ -200,6 +201,8 @@ const Home: React.FC = () => {
           background-color: #388e3c;
         }
       `}</style>
+        <Burnupdown/>
+
         </div>
     );
 };
