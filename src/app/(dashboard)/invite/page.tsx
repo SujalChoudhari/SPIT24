@@ -1,6 +1,7 @@
 "use client";
 import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
+import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
@@ -12,6 +13,20 @@ export default function Emaili() {
                 <CardDescription className="mt-4">Enter an email address to send the invite.</CardDescription>
             </CardHeader>
             <CardContent className="p-6">
+            <div className="mt-4 space-y-2">
+          <Label className="sr-only" htmlFor="organization">
+            Organization Type
+          </Label>
+          <Select className="w-full" id="organization">
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select organization type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="company">ITerative bytes</SelectItem>
+              <SelectItem value="school">Organisation 2</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
                 <div className="space-y-2">
                     <Label className="sr-only" htmlFor="email">
                         Email
@@ -49,7 +64,6 @@ function XIcon(props) {
         </svg>
     )
 }
-
 
 function ArrowRightIcon(props) {
     return (
