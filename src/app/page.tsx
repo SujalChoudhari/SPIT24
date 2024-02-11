@@ -3,6 +3,7 @@ import Patientloginin from "./(auth)/signup/page";
 import Hero from "@/components/Hero";
 import TabsDemo from "@/components/component/exampletabs";
 import Link from "next/link";
+import { Heart } from "lucide-react";
 
 export default function Home() {
   return (
@@ -31,6 +32,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <div className=" bg-black py-4 text-gray-300 items-center  align-middle flex flex-row space-x-3">
+        <p className="ml-28">Crafted with Care by Team Iterative Bytes</p>
+        <Heart width={20} color="red" stroke="red"/>
+      </div>
       {/* Landing */}
     </main>
   );
