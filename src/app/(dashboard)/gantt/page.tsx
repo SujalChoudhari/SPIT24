@@ -31,17 +31,17 @@ async function initializeGSTC(element: HTMLElement | null) {
     function generateItems() {
         const tasksByRow: { [key: string]: string[] } = {};
         const tasks = [
-            "Fixing a bug",
-            "Implementing feature",
-            "Refactoring code",
-            "Writing tests",
-            "Creating Figma design",
-            "Optimizing performance",
-            "Deploying application",
-            "Reviewing pull requests",
-            "Documenting code",
-            "Conducting code review",
-            "Meeting with stakeholders",
+            "Sprint 9: Fixing a bug",
+            "Sprint 9: Implementing feature",
+            "Sprint 9: Refactoring code",
+            "Sprint 9: Writing tests",
+            "Sprint 9: Creating Figma design",
+            "Sprint 9: Optimizing performance",
+            "Sprint 10: Deploying application",
+            "Sprint 10: Reviewing pull requests",
+            "Sprint 10: Documenting code",
+            "Sprint 10: Conducting code review",
+            "Sprint 10: Meeting with stakeholders",
         ];
         const rows = Object.keys(generateRows());
 

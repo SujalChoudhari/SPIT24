@@ -2,7 +2,7 @@
 import React, { ReactNode, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { GanttChart, ChevronsLeftIcon, HomeIcon, ShoppingBagIcon, UsersIcon, BarChart2Icon, SettingsIcon, GanttChartSquare, Kanban, KanbanSquare, MailIcon, MailMinus, MailPlus, LucideAreaChart, Settings, Code2Icon, Tv2Icon, GlassWater, WindIcon, LucideVegan, ListVideo, KeyboardIcon, LogOut } from "lucide-react";
+import { GanttChart, ChevronsLeftIcon, HomeIcon, ShoppingBagIcon, UsersIcon, BarChart2Icon, SettingsIcon, GanttChartSquare, Kanban, KanbanSquare, MailIcon, MailMinus, MailPlus, LucideAreaChart, Settings, Code2Icon, Tv2Icon, GlassWater, WindIcon, LucideVegan, ListVideo, KeyboardIcon, LogOut, HelpingHand, ShieldCheck } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/context/AuthContext";
@@ -59,15 +59,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Sidebar
             links={[
                 { icon: <HomeIcon />, title: "Home", href: "/home" },
-                { icon: <KanbanSquare />, title: "Tasks", href: "/tasks" },
+                { icon: <KanbanSquare />, title: "Sprints", href: "/tasks" },
                 { icon: <GanttChartSquare />, title: "Timeline", href: "/gantt" },
+                { icon: <ShieldCheck />, title: "Ask AI", href: "/ask-ai" },
                 { icon: <MailPlus />, title: "Invite", href: "/invite" },
                 { icon: <LucideAreaChart />, title: "Analytics", href: "/analytics" },
                 { icon: <KeyboardIcon />, title: "Chat", href: "/chat" },
                 { icon: <Tv2Icon />, title: "Team Meet", href: "/team-meet" },
                 { icon: <ListVideo />, title: "Live Code", href: "https://vscode.dev/github/SujalChoudhari/Coda" },
                 { icon: <Code2Icon />, title: "Feedback API", href: "/feedback" },
-                { icon: <Avatar className="w-[30px] h-[30px]"><AvatarImage src={auth?.user?.photoURL || "https://github.com/shadcn.png"} alt="profile" /> </Avatar>, title: auth?.user?.displayName || "User", href: "/profile" },
+                { icon: <Avatar className="w-[30px] h-[30px]"><AvatarImage src={auth?.user?.photoURL || "https://github.com/shadcn.png"} alt="profile" /> </Avatar>, title: auth?.user?.displayName || "User", href: "/home" },
                 { icon: <LogOut />, title: "Logout", href: "/logout" },
             ]}
         />

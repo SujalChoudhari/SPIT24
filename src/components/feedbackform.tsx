@@ -33,6 +33,7 @@ export function Feedbackform() {
           <Label className="text-sm" htmlFor="category">
             Feedback Category
           </Label>
+          {/* @ts-ignore */}
           <Select defaultValue="bug" id="category">
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select category" />
