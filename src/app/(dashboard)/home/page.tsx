@@ -95,6 +95,7 @@ const Component = () => {
             />
             <div className="container grid gap-6 px-4 mt-5 ml-0 md:px-6">
                 <div id='details' className="flex flex-col">
+                    <h1 className="text-3xl font-bold">Organization name: ITerative bytes</h1>
                     <h1 className="text-2xl font-bold">{auth?.user?.displayName}</h1>
                     <p className="text-gray-500 dark:text-gray-400">ID: {auth?.user?.uid}</p>
                     <p className="text-gray-500 font-bold dark:text-gray-400">{auth?.user?.email}</p>
