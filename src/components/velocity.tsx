@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 
 export function Velocity() {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg max-w-4xl mx-auto my-8">
+    <div className="bg-white flex-col w-[80lvw] p-6 rounded-lg shadow-lg max-w-4xl mx-auto my-8">
       <div className="flex justify-between items-start">
         <div className="flex space-x-4 items-center">
           <ArrowLeftIcon className="text-purple-500" />

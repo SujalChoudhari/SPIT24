@@ -1,3 +1,5 @@
+import { Burnupdown } from "./components/burnupdown";
+
 export const analytics = {
     totalExpenditure: "23,452Rs.",
     totalBudget: "50,000Rs.",
@@ -46,6 +48,53 @@ export const analytics = {
     totalRevisionsMade: "4",
     issuesFixed: "138",
     pendingIssues: "33",
-    pendingTasks: "10"
-
+    pendingTasks: "10",
+    burnup: [
+        {
+            id: "Expected",
+            data: [
+                { x: "5th", y: 0 },
+                { x: "6th", y: 10 },
+                { x: "7th", y: 20 },
+                { x: "8th", y: 50 },
+                { x: "9th", y: 70 },
+                { x: "10th", y: 100 },
+            ],
+        },
+        {
+            id: "Curret",
+            data: [
+                { x: "5th", y: 0 },
+                { x: "6th", y: 7 },
+                { x: "7th", y: 18 },
+                { x: "8th", y: 55 },
+                { x: "9th", y: 59 },
+                { x: "10th", y: 78 },
+            ],
+        },
+    ],
+    burndown: [
+        {
+            id: "Expected",
+            data: [
+                { x: "5th", y: 100 },
+                { x: "6th", y: 60 },
+                { x: "7th", y: 55 },
+                { x: "8th", y: 54 },
+                { x: "9th", y: 20 },
+                { x: "10th", y: 0 },
+            ],
+        },
+        {
+            id: "Current",
+            data: [
+                { x: "5th", y: 100 },
+                { x: "6th", y: 90 },
+                { x: "7th", y: 78 },
+                { x: "8th", y: 60 },
+                { x: "9th", y: 40 },
+                { x: "10th", y: 38 },
+            ],
+        },
+    ]
 }

@@ -14,6 +14,8 @@ import { analytics } from "@/analytics";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import { useEffect } from "react";
+import { Burnupdown } from "@/components/burnupdown";
+import { Velocity } from "@/components/velocity";
 
 export default function analy1() {
 
@@ -231,8 +233,8 @@ export default function analy1() {
                             </div>
                             <CardDescription>Issue Fixed</CardDescription>
                         </CardHeader>
-
                     </Card>
+                    <Velocity/>
                 </div>
             </main>
         </div>
