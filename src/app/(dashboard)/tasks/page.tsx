@@ -20,6 +20,7 @@ export default function page() {
 
   return (
     <div  id='kanban' className='w-[80vw]'>
+      
       <h1 className=' ml-14 text-lg font-extrabold'>Sprints</h1>
       <KanbanBoard />
     </div>

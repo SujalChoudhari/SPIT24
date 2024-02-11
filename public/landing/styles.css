@@ -1,5 +1,5 @@
 :root {
-  --bg: #e9e9e9;
+  --bg: radial-gradient(125% 125% at 50% 10%, #fff 40%, #63e 100%);;
   --border: #303030;
   --color: #7e7e7e;
 }

@@ -87,7 +87,22 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"), // Include the tailwindcss-animate plugin
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.hide-scrollbar::-webkit-scrollbar': {
+          display: 'none',
+        },
+        '.hide-scrollbar': {
+          '-ms-overflow-style': 'none', // IE and Edge
+          'scrollbar-width': 'none', // Firefox
+        },
+      };
+
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    },
+  ],
 } satisfies Config
 
 export default config
