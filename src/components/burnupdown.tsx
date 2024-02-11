@@ -5,6 +5,7 @@
 import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { ResponsiveLine } from "@nivo/line"
+import { analytics } from "@/analytics"
 
 export function Burnupdown() {
   return (
@@ -49,7 +50,7 @@ export function Burnupdown() {
           <Button className="text-sm" variant="ghost">
             Show more
           </Button>
-          <CurvedlineChart className="w-full h-[300px]" />
+          <BurnUp className="w-full h-[300px]" />
         </div>
         <div className="w-1/2 p-6 space-y-6">
           <div className="flex items-center space-x-2">
@@ -90,7 +91,7 @@ export function Burnupdown() {
           <Button className="text-sm" variant="ghost">
             Show more
           </Button>
-          <CurvedlineChart className="w-full h-[300px]" />
+          <BurnDown className="w-full h-[300px]" />
         </div>
       </div>
       <Button className="mt-4 bg-blue-600 text-white">Add Widget</Button>
@@ -142,34 +143,65 @@ function CalendarIcon(props) {
 }
 
 
-function CurvedlineChart(props) {
+function BurnUp(props) {
   return (
     <div {...props}>
       <ResponsiveLine
-        data={[
-          {
-            id: "Desktop",
-            data: [
-              { x: "Jan", y: 43 },
-              { x: "Feb", y: 137 },
-              { x: "Mar", y: 61 },
-              { x: "Apr", y: 145 },
-              { x: "May", y: 26 },
-              { x: "Jun", y: 154 },
-            ],
+        data={analytics.burnup}
+        margin={{ top: 10, right: 10, bottom: 40, left: 40 }}
+        xScale={{
+          type: "point",
+        }}
+        yScale={{
+          type: "linear",
+          min: 0,
+          max: "auto",
+        }}
+        curve="monotoneX"
+        axisTop={null}
+        axisRight={null}
+        axisBottom={{
+          tickSize: 0,
+          tickPadding: 16,
+        }}
+        axisLeft={{
+          tickSize: 0,
+          tickValues: 5,
+          tickPadding: 16,
+        }}
+        colors={["#2563eb", "#e11d48"]}
+        pointSize={6}
+        useMesh={true}
+        gridYValues={6}
+        theme={{
+          tooltip: {
+            chip: {
+              borderRadius: "9999px",
+            },
+            container: {
+              fontSize: "12px",
+              textTransform: "capitalize",
+              borderRadius: "6px",
+            },
           },
-          {
-            id: "Mobile",
-            data: [
-              { x: "Jan", y: 60 },
-              { x: "Feb", y: 48 },
-              { x: "Mar", y: 177 },
-              { x: "Apr", y: 78 },
-              { x: "May", y: 96 },
-              { x: "Jun", y: 204 },
-            ],
+          grid: {
+            line: {
+              stroke: "#f3f4f6",
+            },
           },
-        ]}
+        }}
+        role="application"
+      />
+    </div>
+  )
+}
+
+
+function BurnDown(props) {
+  return (
+    <div {...props}>
+      <ResponsiveLine
+        data={analytics.burndown}
         margin={{ top: 10, right: 10, bottom: 40, left: 40 }}
         xScale={{
           type: "point",
