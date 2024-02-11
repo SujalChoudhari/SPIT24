@@ -104,27 +104,29 @@ const Component = () => {
 
                 <div id='tasks' className="grid gap-4 w-[65lvw]  mx-auto mt-4">
                     {tasks.map((task, index) => (
-                        <Card key={index}>
-                            <CardHeader >
-                                <CardTitle>{task.title}</CardTitle>
-                                <CardDescription>{task.description}</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="grid gap-2 w-full">
-                                    <div className="flex items-center gap-2 w-full">
-                                        <ActivityIcon className="w-6 h-6" />
-                                        <span className="text-sm font-medium">Task {index + 1}</span>
-                                        <span className="ml-auto text-sm text-gray-500 dark:text-gray-500">{`${task.progress}%`}</span>
+                        <Link href={"/tasks"}>
+                            <Card key={index}>
+                                <CardHeader >
+                                    <CardTitle>{task.title}</CardTitle>
+                                    <CardDescription>{task.description}</CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="grid gap-2 w-full">
+                                        <div className="flex items-center gap-2 w-full">
+                                            <ActivityIcon className="w-6 h-6" />
+                                            <span className="text-sm font-medium">Task {index + 1}</span>
+                                            <span className="ml-auto text-sm text-gray-500 dark:text-gray-500">{`${task.progress}%`}</span>
+                                        </div>
+                                        <Progress
+                                            className="h-2 rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 dark:bg-gradient-to-r dark:from-pink-600 dark:to-purple-700"
+                                            value={task.progress}
+                                            //@ts-ignore
+                                            variant={"linear"}
+                                        />
                                     </div>
-                                    <Progress
-                                        className="h-2 rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 dark:bg-gradient-to-r dark:from-pink-600 dark:to-purple-700"
-                                        value={task.progress}
-                                        //@ts-ignore
-                                        variant={"linear"}
-                                    />
-                                </div>
-                            </CardContent>
-                        </Card>
+                                </CardContent>
+                            </Card>
+                        </Link>
                     ))}
                 </div>
             </div>
